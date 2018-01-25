@@ -4,13 +4,13 @@ import Toggle from 'material-ui/Toggle';
 
 class Task extends React.Component {
   render() {
-    const { title, duration, isRunning } = this.props.task;
+    const { title, duration } = this.props.task;
 
     return (
       <ListItem
         primaryText={ title }
         secondaryText={ duration }
-        rightToggle={<Toggle toggled={ isRunning }/>}>
+        rightToggle={<Toggle/>}>
       </ListItem>
     );
   }

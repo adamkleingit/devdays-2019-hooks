@@ -8,16 +8,13 @@ import Divider from 'material-ui/Divider';
 
 const tempItems = [{
   title: 'Axonite',
-  duration: '0:00',
-  isRunning: false
+  duration: '0:01'
 }, {
   title: 'Ping Pong',
-  duration: '1:22',
-  isRunning: false
+  duration: '3:22'
 }, {
   title: 'Group Challenge',
-  duration: '0:22',
-  isRunning: true
+  duration: '0:22'
 }]
 
 class Home extends React.Component {
@@ -34,7 +31,7 @@ class Home extends React.Component {
         <Divider/>
         <ListItem
           primaryText="Total"
-          secondaryText="1:44"/>
+          secondaryText="3:45"/>
       </Fragment>
     );
   }
