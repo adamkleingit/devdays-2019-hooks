@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { About } from "./About";
 import { Home } from "./Home";
 import { Header } from "./Header";
+import { TasksProvider } from './tasks.store';
 import { Card } from "material-ui/Card";
 
 import "./App.css";
@@ -14,13 +15,13 @@ class App extends React.Component {
     return (
       <Router>
         <MuiThemeProvider>
-          <div>
+          <TasksProvider>
             <Header />
             <Card style={{ margin: 50, padding: 50 }}>
               <Route exact path="/" component={Home} />
               <Route path="/about" component={About} />
             </Card>
-          </div>
+          </TasksProvider>
         </MuiThemeProvider>
       </Router>
     );
