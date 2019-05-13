@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment } from "react";
 import { List, ListItem } from "material-ui/List";
 import {update} from 'lodash/fp';
 import { Task } from "./Task";
@@ -56,7 +56,7 @@ export class Home extends React.Component {
     }
   }
   
-  onToggleTask = index => {
+  toggleActiveTask = index => {
     this.setState(state => ({
       activeTask: state.activeTask === index ? null : index
     }));;
@@ -77,7 +77,7 @@ export class Home extends React.Component {
           isActive={index === activeTask}
           index={index}
           {...item}
-          onToggle={this.onToggleTask}
+          onToggle={this.toggleActiveTask}
           />
           ))}
       </List>
