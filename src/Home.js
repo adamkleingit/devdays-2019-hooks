@@ -1,40 +1,38 @@
-import React, {Fragment} from 'react';
-import {List, ListItem} from 'material-ui/List';
-import Task from './Task';
-import TextField from 'material-ui/TextField';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import Divider from 'material-ui/Divider';
+import React, { Fragment, useMemo } from "react";
+import { List, ListItem } from "material-ui/List";
+import { useTasks } from "./tasks.store";
+import { Task } from "./Task";
+import { TaskTitle } from "./TaskTitle";
+import { timeStr } from "./time.utils";
+import Divider from "material-ui/Divider";
+// App
+export const Home = () => {
+  const { items, addTask, activeTask, setActiveTask } = useTasks();
+  const totalDuration = useMemo(
+    () => items.reduce((prev, curr) => prev + curr.duration, 0),
+    [items]
+  );
+  const totalTime = timeStr(totalDuration);
+  const onToggleTask = index => {
+    setActiveTask(prev => (prev === index ? null : index));
+  };
 
-const tempItems = [{
-  title: 'Axonite',
-  duration: '0:01'
-}, {
-  title: 'Ping Pong',
-  duration: '3:22'
-}, {
-  title: 'Group Challenge',
-  duration: '0:22'
-}]
-
-class Home extends React.Component {
-  render() {
-    return (
-      <Fragment>
-        <TextField name="title" placeholder="Task Title"/>
-        <FloatingActionButton mini={true} style={ {marginLeft: 10 } }>
-          <ContentAdd />
-        </FloatingActionButton>
-        <List>
-          { tempItems.map((item) => <Task key={item.title} task={item}/>) }
-        </List>
-        <Divider/>
-        <ListItem
-          primaryText="Total"
-          secondaryText="3:45"/>
-      </Fragment>
-    );
-  }
-}  
-
-export default Home;
+  return (
+    <Fragment>
+      <TaskTitle onAddTask={addTask} />
+      <List>
+        {items.map((item, index) => (
+          <Task
+            key={index}
+            isActive={index === activeTask}
+            index={index}
+            {...item}
+            onToggle={onToggleTask}
+          />
+        ))}
+      </List>
+      <Divider />
+      <ListItem primaryText="Total" secondaryText={totalTime} />
+    </Fragment>
+  );
+};

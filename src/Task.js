@@ -1,19 +1,14 @@
-import React from 'react';
-import {ListItem} from 'material-ui/List';
-import Toggle from 'material-ui/Toggle';
+import React from "react";
+import { ListItem } from "material-ui/List";
+import { Toggle } from "./Toggle";
+import { timeStr } from "./time.utils";
 
-class Task extends React.Component {
-  render() {
-    const { title, duration } = this.props.task;
-
-    return (
-      <ListItem
-        primaryText={ title }
-        secondaryText={ duration }
-        rightToggle={<Toggle/>}>
-      </ListItem>
-    );
-  }
-}  
-
-export default Task;
+export const Task = ({ index, isActive, title, duration, onToggle }) => {
+  return (
+    <ListItem
+      primaryText={title}
+      secondaryText={timeStr(duration)}
+      rightToggle={<Toggle value={isActive} onChange={() => onToggle(index)} />}
+    />
+  );
+};

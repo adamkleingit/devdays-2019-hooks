@@ -1,5 +1,5 @@
-import React from 'react';
+import React from "react";
 
-const About = () => <div>about</div>;
-
-export default About;
+export const About = () => {
+  return <div>about</div>;
+};
