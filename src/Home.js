@@ -24,6 +24,12 @@ export class Home extends React.Component {
     }));
   }
 
+  toggleActiveTask = index => {
+    this.setState(state => ({
+      activeTask: state.activeTask === index ? null : index
+    }));;
+  };
+
   componentDidUpdate(_, prevState) {
     if (prevState.activeTask === null && this.state.activeTask !== null) {
       this.startTimer();
@@ -56,12 +62,6 @@ export class Home extends React.Component {
     }
   }
   
-  toggleActiveTask = index => {
-    this.setState(state => ({
-      activeTask: state.activeTask === index ? null : index
-    }));;
-  };
-
   render() {
     const { items, activeTask } = this.state;
     const totalDuration = items.reduce((prev, curr) => prev + curr.duration, 0);
