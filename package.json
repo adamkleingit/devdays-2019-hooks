@@ -15,6 +15,9 @@
     "redux": "3.7.2",
     "redux-actions": "2.2.1"
   },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
